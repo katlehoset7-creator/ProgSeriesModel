@@ -1,0 +1,24 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package rc.tvseriesapp;
+
+/**
+ *
+ * @author Student
+ */
+class SeriesModel {
+    
+    String seriesId;
+    String seriesName;
+    int seriesAge;
+    int numberOfEpisodes;
+    
+    public SeriesModel(String id, String name, int age, int episodes) {
+        seriesId = id;
+        seriesName = name;
+        seriesAge = age;
+        numberOfEpisodes = episodes;
+    }
+}
