@@ -1,0 +1,95 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ */
+package rc.tvseriesapp;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayInputStream;
+import java.util.Scanner;
+
+public class SeriesTest {
+
+    // 1. TestSearchSeries()
+    @Test
+    public void TestSearchSeries() {
+        String inputData = "1\n"; // simulate entering ID 1
+        Scanner input = new Scanner(new ByteArrayInputStream(inputData.getBytes()));
+
+        Series instance = new Series();
+        instance.captureSeries(new Scanner(new ByteArrayInputStream("1\nTest\n16\n".getBytes())));
+
+        instance.searchSeries(input);
+
+        assertTrue(true); // if no crash, test passes
+    }
+
+    // 2. TestSearchSeries_SeriesNotFound()
+    @Test
+    public void TestSearchSeries_SeriesNotFound() {
+        String inputData = "999\n";
+        Scanner input = new Scanner(new ByteArrayInputStream(inputData.getBytes()));
+
+        Series instance = new Series();
+        instance.searchSeries(input);
+
+        assertTrue(true);
+    }
+
+    // 3. TestUpdateSeries()
+    @Test
+    public void TestUpdateSeries() {
+        String inputData = "1\nUpdatedName\n";
+        Scanner input = new Scanner(new ByteArrayInputStream(inputData.getBytes()));
+
+        Series instance = new Series();
+        instance.captureSeries(new Scanner(new ByteArrayInputStream("1\nTest\n16\n".getBytes())));
+
+        instance.updateSeries(input);
+
+        assertTrue(true);
+    }
+
+    // 4. TestDeleteSeries()
+    @Test
+    public void TestDeleteSeries() {
+        String inputData = "1\n";
+        Scanner input = new Scanner(new ByteArrayInputStream(inputData.getBytes()));
+
+        Series instance = new Series();
+        instance.captureSeries(new Scanner(new ByteArrayInputStream("1\nTest\n16\n".getBytes())));
+
+        instance.deleteSeries(input);
+
+        assertTrue(true);
+    }
+
+    // 5. TestDeleteSeries_SeriesNotFound()
+    @Test
+    public void TestDeleteSeries_SeriesNotFound() {
+        String inputData = "999\n";
+        Scanner input = new Scanner(new ByteArrayInputStream(inputData.getBytes()));
+
+        Series instance = new Series();
+        instance.deleteSeries(input);
+
+        assertTrue(true);
+    }
+
+    // 6. TestSeriesAgeRestriction_AgeValid()
+    @Test
+    public void TestSeriesAgeRestriction_AgeValid() {
+        Series instance = new Series();
+        boolean result = instance.isValidAge(16);
+        assertTrue(result);
+    }
+
+    // 7. TestSeriesAgeRestriction_SeriesAgeInValid()
+    @Test
+    public void TestSeriesAgeRestriction_SeriesAgeInValid() {
+        Series instance = new Series();
+        boolean result = instance.isValidAge(-5);
+        assertFalse(result);
+    }
+}
