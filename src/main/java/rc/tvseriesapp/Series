@@ -1,0 +1,141 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package rc.tvseriesapp;
+
+import java.util.Scanner;
+
+
+
+class Series {
+    
+    
+    
+
+    SeriesModel[] seriesList = new SeriesModel[100];
+    int count = 0;
+
+    public void captureSeries(Scanner input) {
+        System.out.print("Enter Series ID: ");
+        String id = input.nextLine();
+
+        System.out.print("Enter Series Name: ");
+        String name = input.nextLine();
+
+        int age;
+        System.out.print("Enter Age Restriction (2 - 18): ");
+        age = input.nextInt();
+        input.nextLine();
+
+        while (age < 2 || age > 18) {
+            System.out.print("Invalid age. Enter again: ");
+            age = input.nextInt();
+            input.nextLine();
+        }
+
+        System.out.print("Enter Number of Episodes for Extreme Sport: ");
+        int episodes = input.nextInt();
+        input.nextLine();
+
+        seriesList[count] = new SeriesModel(id, name, age, episodes);
+        count++;
+
+        System.out.println("Series added successfully.");
+        
+    }
+
+    public void searchSeries(Scanner input) {
+        System.out.print("Enter Series ID: ");
+        String id = input.nextLine();
+
+        boolean found = false;
+
+        for (int i = 0; i < count; i++) {
+            if (seriesList[i].seriesId.equals(id)) {
+
+                System.out.println("\nSeries Found:");
+                System.out.println("ID: " + seriesList[i].seriesId);
+                System.out.println("Name: " + seriesList[i].seriesName);
+                System.out.println("Age: " + seriesList[i].seriesAge);
+                System.out.println("Episodes: " + seriesList[i].numberOfEpisodes);
+
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Series not found.");
+        }
+    }
+
+    public void updateSeries(Scanner input) {
+        System.out.print("Enter Series ID to update: ");
+        String id = input.nextLine();
+
+        for (int i = 0; i < count; i++) {
+            if (seriesList[i].seriesId.equals(id)) {
+
+                System.out.print("Enter new age: ");
+                seriesList[i].seriesAge = input.nextInt();
+                input.nextLine();
+
+                System.out.print("Enter new number of episodes: ");
+                seriesList[i].numberOfEpisodes = input.nextInt();
+                input.nextLine();
+
+                System.out.println("Series updated.");
+                return;
+            }
+        }
+
+        System.out.println("Series not found.");
+    }
+
+    public void deleteSeries(Scanner input) {
+        System.out.print("Enter Series ID to delete: ");
+        String id = input.nextLine();
+
+        for (int i = 0; i < count; i++) {
+            if (seriesList[i].seriesId.equals(id)) {
+
+                for (int j = i; j < count - 1; j++) {
+                    seriesList[j] = seriesList[j + 1];
+                }
+
+                count--;
+                System.out.println("Series deleted.");
+                return;
+            }
+        }
+
+        System.out.println("Series not found.");
+    }
+
+    public void printReport() {
+        if (count == 0) {
+            System.out.println("No series available.");
+            return;
+        }
+
+        System.out.println("\n--- SERIES REPORT ---");
+
+        for (int i = 0; i < count; i++) {
+            System.out.println("----------------------");
+            System.out.println("ID: " + seriesList[i].seriesId);
+            System.out.println("Name: " + seriesList[i].seriesName);
+            System.out.println("Age: " + seriesList[i].seriesAge);
+            System.out.println("Episodes: " + seriesList[i].numberOfEpisodes);
+        }
+    }
+      public boolean isValidAge(int age) {
+        return age > 0;
+      }
+}
+    
+  
+ 
+    
+   
+   
